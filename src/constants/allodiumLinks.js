@@ -8,4 +8,4 @@ export const ALLODIUM_GITHUB_REPO = 'https://github.com/magistrigusti/metaverse_
 
 export const ALLODIUM_PROJECT_SITE = 'https://metaverse-allodium.vercel.app/';
 export const ALLODIUM_PORTAL = 'https://portal-allodium.vercel.app';
-export const ALLODIUM_GAME_WEB = 'https://allodiums.vercel.app/';
+export const ALLODIUM_GAME_WEB = 'https://allodium.vercel.app';

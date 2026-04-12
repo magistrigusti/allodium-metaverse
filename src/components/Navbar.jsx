@@ -9,7 +9,7 @@ import { TiLocationArrowOutline } from 'react-icons/ti';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 
-import { ALLODIUM_TELEGRAM_MERCATOS_BOT } from '@/constants/allodiumLinks';
+import { ALLODIUM_GAME_WEB } from '@/constants/allodiumLinks';
 import Button from './Button';
 
 const navItems = [
@@ -120,14 +120,14 @@ const Navbar = () => {
               containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
               title="Products"
               rightIcon={<TiLocationArrowOutline />}
-              onClick={() => window.open(ALLODIUM_TELEGRAM_MERCATOS_BOT, '_blank')}
+              onClick={() => window.open(ALLODIUM_GAME_WEB, '_blank')}
             />
             <Button
               id="product-button-mobile"
               containerClass="bg-blue-50 flex md:hidden items-center justify-center gap-1"
               title="Products"
               rightIcon={<TiLocationArrowOutline />}
-              onClick={() => window.open(ALLODIUM_TELEGRAM_MERCATOS_BOT, '_blank')}
+              onClick={() => window.open(ALLODIUM_GAME_WEB, '_blank')}
             />
           </div>
 

@@ -1,5 +1,7 @@
 'use client';
 
+// ========== Звук: в продакшене браузеры блокируют autoplay без жеста пользователя (Chrome/Safari/Firefox). ==========
+// Пытаемся play() сразу; при отказе — первый pointerdown/keydown по странице «разблокирует» саундтрек.
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -27,7 +29,13 @@ const Navbar = () => {
 
   const navContainerRef = useRef(null);
   const audioElementRef = useRef(null);
+  const isMutedRef = useRef(isMuted);
+  const unlockListenersScheduledRef = useRef(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+  }, [isMuted]);
   const { y: currentScrollY } = useWindowScroll();
 
   useEffect(() => {
@@ -53,13 +61,41 @@ const Navbar = () => {
     })
   }, []);
 
-  const toggleSoundtrackMute = () => setIsMuted((m) => !m);
+  const toggleSoundtrackMute = () => {
+    const el = audioElementRef.current;
+    setIsMuted((prev) => {
+      const next = !prev;
+      if (el) {
+        el.muted = next;
+        // Вызов play() в том же синхронном стеке, что и клик по кнопке — браузер даёт звук после первого жеста.
+        if (!next) void el.play().catch(() => {});
+      }
+      return next;
+    });
+  };
 
   useEffect(() => {
     const el = audioElementRef.current;
     if (!el) return;
+
     el.muted = isMuted;
-    if (!isMuted) void el.play().catch(() => {});
+    const tryPlay = () => {
+      el.muted = isMutedRef.current;
+      return el.play();
+    };
+
+    tryPlay().catch(() => {
+      if (unlockListenersScheduledRef.current) return;
+      unlockListenersScheduledRef.current = true;
+      const unlock = () => {
+        const a = audioElementRef.current;
+        if (!a) return;
+        a.muted = isMutedRef.current;
+        void a.play().catch(() => {});
+      };
+      window.addEventListener('pointerdown', unlock, { capture: true, once: true });
+      window.addEventListener('keydown', unlock, { capture: true, once: true });
+    });
   }, [isMuted]);
 
 

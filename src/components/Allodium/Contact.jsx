@@ -1,3 +1,4 @@
+import { ALLODIUM_TELEGRAM_COMMUNITY } from '@/constants/allodiumLinks';
 import ImageClipBox from './ImageClipBox';
 import Button from '../Button';
 
@@ -34,9 +35,10 @@ const Contact = () => {
             <b>Let's bild the</b> <br/> <b>new ere of</b> <br /> <b>gaming together</b>
           </p>
 
-          <Button containerClass="mt-10 cursor-pointer"
-            title="contact us" 
-            onClick={() => window.open('https://t.me/AllodiumGame', '_blank')}
+          <Button
+            containerClass="mt-10 cursor-pointer"
+            title="contact us"
+            onClick={() => window.open(ALLODIUM_TELEGRAM_COMMUNITY, '_blank')}
           />
         </div>
       </div> 

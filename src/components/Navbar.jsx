@@ -106,9 +106,9 @@ const Navbar = () => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           <div className="flex items-center gap-7">
-            <Link href="/">
+            <Link href="/allodium">
               <img
-                className={`w-20 ${pathname === '/' ? 'animate-pulse brightness-125' : ''}`}
+                className={`w-20 ${pathname === '/allodium' ? 'animate-pulse brightness-125' : ''}`}
                 src="/allodium/icons/allod_logo.png"
                 alt="allod-logo"
               />

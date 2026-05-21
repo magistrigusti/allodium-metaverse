@@ -2,6 +2,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/all';
 import AnimatedTitle from './AnimatedTitle';
+import DominumIslandSection from '@/components/Dominum/IslandSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -52,8 +53,11 @@ const About = () => {
             src="img/alfa-vender-4.png" 
             alt="Background"
           />
+          
         </div>
       </div>
+
+      <DominumIslandSection />
     </div>
   )
 }

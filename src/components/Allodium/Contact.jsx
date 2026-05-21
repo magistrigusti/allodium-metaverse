@@ -9,11 +9,11 @@ const Contact = () => {
         <div className="absolute -left-20 top-20 hidden h-full w-72 overflow-hidden sm:block lg:left-20 lg:w-96">
           <ImageClipBox clipClass="contact-clip-path w-80"
             
-            src="allodium/hero-mag.jpg"
+            src="allodium/img/hero-mag.jpg"
           />
 
           <ImageClipBox clipClass="contact-clip-path-3 lg:translate-y-1 translate-y-60 w-80"
-            src="allodium/hero-elf.png"
+            src="allodium/img/hero-elf.png"
           />
         </div>
 
@@ -21,11 +21,11 @@ const Contact = () => {
           md:right-10 lg:top-20 lg:w-80" 
         >
           <ImageClipBox clipClass="absolute md:scale-125" 
-            src="allodium/hero-ork.png"
+            src="allodium/img/hero-ork.png"
           />
 
           <ImageClipBox clipClass="sword-man-clip-path md:scale-125" 
-            src="allodium/hero-ork.png"
+            src="allodium/img/hero-ork.png"
           />
         </div>
 

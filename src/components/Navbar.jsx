@@ -1,28 +1,63 @@
 'use client';
 
-// ========== Звук: в продакшене браузеры блокируют autoplay без жеста пользователя (Chrome/Safari/Firefox). ==========
-// Пытаемся play() сразу; при отказе — первый pointerdown/keydown по странице «разблокирует» саундтрек.
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { TiLocationArrowOutline } from 'react-icons/ti';
 import { useWindowScroll } from 'react-use';
 import gsap from 'gsap';
 
-import { ALLODIUM_GAME_WEB } from '@/constants/allodiumLinks';
 import Button from './Button';
 
-const navItems = [
-  { path: '/dominum', icon: '/allodium/icons/dom-link.png' },
-  // { path: '/dominarium', icon: '/allodium/icons/allod-link.png' },
-  // { path: '/magisterium', icon: '/allodium/icons/allod-link.png' },
-  // { path: '/mercatus', icon: '/allodium/icons/allod-link.png' },
-  // { path: '/portal', icon: '/allodium/icons/allod-link.png' },
+import {
+  NAVBAR_CLASSES,
+  NAVBAR_HOME_LINK,
+  NAVBAR_ICON_LINKS,
+  NAVBAR_PRODUCTS_LINK,
+  NAVBAR_SOUNDTRACK,
+} from '@/constants/navbar.constants';
 
-];
+const getActiveClass = (isActive) => {
+  return isActive ? NAVBAR_CLASSES.iconActive : '';
+};
+
+const NavbarIconLink = ({ item, pathname }) => {
+  const isActive = !item.isExternal && pathname === item.href;
+
+  const image = (
+    <img
+      src={item.icon}
+      alt={item.label}
+      className={`${NAVBAR_CLASSES.iconImage} ${getActiveClass(isActive)}`}
+    />
+  );
+
+  if (item.isExternal) {
+    return (
+      <a
+        className={NAVBAR_CLASSES.iconLink}
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={item.label}
+      >
+        {image}
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      className={NAVBAR_CLASSES.iconLink}
+      href={item.href}
+      aria-label={item.label}
+    >
+      {image}
+    </Link>
+  );
+};
 
 const Navbar = () => {
-  // ========== ФОНОВЫЙ САУНДТРЕК: по умолчанию звук ВКЛ, иконка показывает «выключить» ==========
   const [isMuted, setIsMuted] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -31,141 +66,190 @@ const Navbar = () => {
   const audioElementRef = useRef(null);
   const isMutedRef = useRef(isMuted);
   const unlockListenersScheduledRef = useRef(false);
+
   const pathname = usePathname();
+  const { y: currentScrollY } = useWindowScroll();
 
   useEffect(() => {
     isMutedRef.current = isMuted;
   }, [isMuted]);
-  const { y: currentScrollY } = useWindowScroll();
 
   useEffect(() => {
+    const navElement = navContainerRef.current;
+
+    if (!navElement) {
+      return;
+    }
+
     if (currentScrollY === 0) {
       setIsNavVisible(true);
-      navContainerRef.current.classList.remove('floating-nav');
-    } else if(currentScrollY > lastScrollY) {
+      navElement.classList.remove('floating-nav');
+    } else if (currentScrollY > lastScrollY) {
       setIsNavVisible(false);
-      navContainerRef.current.classList.add('floating-nav');
+      navElement.classList.add('floating-nav');
     } else if (currentScrollY < lastScrollY) {
       setIsNavVisible(true);
-      navContainerRef.current.classList.add('floating-nav');
+      navElement.classList.add('floating-nav');
     }
 
     setLastScrollY(currentScrollY);
   }, [currentScrollY, lastScrollY]);
 
   useEffect(() => {
+    if (!navContainerRef.current) {
+      return;
+    }
+
     gsap.to(navContainerRef.current, {
       y: isNavVisible ? 0 : -100,
       opacity: isNavVisible ? 1 : 0,
       duration: 0.2,
-    })
-  }, []);
+    });
+  }, [isNavVisible]);
 
   const toggleSoundtrackMute = () => {
-    const el = audioElementRef.current;
-    setIsMuted((prev) => {
-      const next = !prev;
-      if (el) {
-        el.muted = next;
-        // Вызов play() в том же синхронном стеке, что и клик по кнопке — браузер даёт звук после первого жеста.
-        if (!next) void el.play().catch(() => {});
+    const audioElement = audioElementRef.current;
+
+    setIsMuted((previousValue) => {
+      const nextValue = !previousValue;
+
+      if (audioElement) {
+        audioElement.muted = nextValue;
+
+        if (!nextValue) {
+          void audioElement.play().catch(() => {});
+        }
       }
-      return next;
+
+      return nextValue;
     });
   };
 
   useEffect(() => {
-    const el = audioElementRef.current;
-    if (!el) return;
+    const audioElement = audioElementRef.current;
 
-    el.muted = isMuted;
-    const tryPlay = () => {
-      el.muted = isMutedRef.current;
-      return el.play();
+    if (!audioElement) {
+      return;
+    }
+
+    audioElement.muted = isMuted;
+
+    const tryPlaySoundtrack = () => {
+      audioElement.muted = isMutedRef.current;
+
+      return audioElement.play();
     };
 
-    tryPlay().catch(() => {
-      if (unlockListenersScheduledRef.current) return;
+    tryPlaySoundtrack().catch(() => {
+      if (unlockListenersScheduledRef.current) {
+        return;
+      }
+
       unlockListenersScheduledRef.current = true;
-      const unlock = () => {
-        const a = audioElementRef.current;
-        if (!a) return;
-        a.muted = isMutedRef.current;
-        void a.play().catch(() => {});
+
+      const unlockSoundtrack = () => {
+        const currentAudioElement = audioElementRef.current;
+
+        if (!currentAudioElement) {
+          return;
+        }
+
+        currentAudioElement.muted = isMutedRef.current;
+        void currentAudioElement.play().catch(() => {});
       };
-      window.addEventListener('pointerdown', unlock, { capture: true, once: true });
-      window.addEventListener('keydown', unlock, { capture: true, once: true });
+
+      window.addEventListener('pointerdown', unlockSoundtrack, {
+        capture: true,
+        once: true,
+      });
+
+      window.addEventListener('keydown', unlockSoundtrack, {
+        capture: true,
+        once: true,
+      });
     });
   }, [isMuted]);
 
+  const isHomeActive = pathname === NAVBAR_HOME_LINK.href;
 
   return (
-    <div className="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6"
+    <div
+      className={NAVBAR_CLASSES.root}
       ref={navContainerRef}
     >
-      <header className="absolute top-1/2 w-full -translate-y-1/2">
-        <nav className="flex size-full items-center justify-between p-4">
-          <div className="flex items-center gap-7">
-            <Link href="/allodium">
+      <header className={NAVBAR_CLASSES.header}>
+        <nav className={NAVBAR_CLASSES.nav}>
+          <div className={NAVBAR_CLASSES.leftGroup}>
+            <Link
+              href={NAVBAR_HOME_LINK.href}
+              aria-label={NAVBAR_HOME_LINK.label}
+            >
               <img
-                className={`w-20 ${pathname === '/allodium' ? 'animate-pulse brightness-125' : ''}`}
-                src="/allodium/icons/allod_logo.png"
-                alt="allod-logo"
+                className={`${NAVBAR_CLASSES.logo} ${
+                  isHomeActive ? NAVBAR_CLASSES.logoActive : ''
+                }`}
+                src={NAVBAR_HOME_LINK.icon}
+                alt={NAVBAR_HOME_LINK.label}
               />
             </Link>
 
-
             <Button
               id="product-button"
-              containerClass="bg-blue-50 md:flex hidden items-center justify-center gap-1"
-              title="Products"
+              containerClass={NAVBAR_CLASSES.productsDesktop}
+              title={NAVBAR_PRODUCTS_LINK.label}
               rightIcon={<TiLocationArrowOutline />}
-              onClick={() => window.open(ALLODIUM_GAME_WEB, '_blank')}
+              onClick={() => window.open(NAVBAR_PRODUCTS_LINK.href, '_blank')}
             />
+
             <Button
               id="product-button-mobile"
-              containerClass="bg-blue-50 flex md:hidden items-center justify-center gap-1"
-              title="Products"
+              containerClass={NAVBAR_CLASSES.productsMobile}
+              title={NAVBAR_PRODUCTS_LINK.label}
               rightIcon={<TiLocationArrowOutline />}
-              onClick={() => window.open(ALLODIUM_GAME_WEB, '_blank')}
+              onClick={() => window.open(NAVBAR_PRODUCTS_LINK.href, '_blank')}
             />
           </div>
 
-          <div className="flex h-full md:flex flex-row items-center">
-            {navItems.map((item) => {
-              const isActive = pathname === item.path;
-              return (
-                <Link key={item.path} href={item.path} className="nav-hover-btn">
-                  <img
-                    src={item.icon}
-                    alt="nav-icon"
-                    className={`nav-hover-btn w-20 h-20 ${isActive ? 'animate-pulse brightness-125' : ''}`}
-                  />
-                </Link>
-              )
-            })}
-
+          <div className={NAVBAR_CLASSES.rightGroup}>
+            {NAVBAR_ICON_LINKS.map((item) => (
+              <NavbarIconLink
+                key={item.id}
+                item={item}
+                pathname={pathname}
+              />
+            ))}
 
             <button
               type="button"
-              className={`music-nav-btn relative ml-10 flex items-center justify-center rounded-xl p-1 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80 ${
-                isMuted ? 'music-nav-btn--muted' : 'music-nav-btn--sound-on'
+              className={`${NAVBAR_CLASSES.musicButton} ${
+                isMuted
+                  ? NAVBAR_CLASSES.musicMuted
+                  : NAVBAR_CLASSES.musicSoundOn
               }`}
               onClick={toggleSoundtrackMute}
-              title={isMuted ? 'Turn on soundtrack' : 'Turn off soundtrack'}
-              aria-label={isMuted ? 'Unmute site soundtrack' : 'Mute site soundtrack'}
+              title={
+                isMuted
+                  ? NAVBAR_SOUNDTRACK.unmuteTitle
+                  : NAVBAR_SOUNDTRACK.muteTitle
+              }
+              aria-label={
+                isMuted
+                  ? NAVBAR_SOUNDTRACK.unmuteLabel
+                  : NAVBAR_SOUNDTRACK.muteLabel
+              }
             >
               <audio
-                className="hidden"
+                className={NAVBAR_CLASSES.musicAudio}
                 ref={audioElementRef}
-                src="/audio/loop.mp3"
+                src={NAVBAR_SOUNDTRACK.src}
                 loop
                 preload="auto"
               />
-              <span className="music-nav-btn__icon-wrap relative block">
+
+              <span className={NAVBAR_CLASSES.musicIconWrap}>
                 <img
-                  className="music-nav-btn__icon pointer-events-none h-20 w-20 select-none"
-                  src="/allodium/icons/music.png"
+                  className={NAVBAR_CLASSES.musicIcon}
+                  src={NAVBAR_SOUNDTRACK.icon}
                   alt=""
                 />
               </span>

@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { gsap } from "gsap";
 import RoundedCorners from './RoundedCorners';
 import Button from '../Button.jsx';
+import AllodiumIslandScene from './scena/Scene';
 
 const Story = () => {
   const frameRef = useRef('null');
@@ -57,23 +58,7 @@ const Story = () => {
             sectionId="#story"
           />
 
-          <div className="story-img-container">
-            <div className="story-img-mask">
-              <div className="storyimg-content">
-                <img className="object-contai"
-                  src="/allodium/card-bg.png" 
-                  alt="etrance"
-                  ref={frameRef}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseUp={handleMouseLeave}
-                  onMouseEnter={handleMouseLeave}
-                  onMouseMove={handleMouseMove}
-                />
-              </div>
-            </div>
-
-            <RoundedCorners />
-          </div>
+          <AllodiumIslandScene />
         </div>
 
         <div className="-mt-80 flex -w-full justify-center md:-mt-64 md:me-44 md:justify-end">

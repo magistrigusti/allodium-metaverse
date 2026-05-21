@@ -1,6 +1,7 @@
 import {
   ALLODIUM_GAME_WEB,
   ALLODIUM_PORTAL,
+  ALLODIUM_TELEGRAM_MERCATOS_BOT,
 } from './allodiumLinks';
 
 // ========== Главная иконка Allodium ==========
@@ -30,6 +31,13 @@ export const NAVBAR_ICON_LINKS = [
     href: ALLODIUM_PORTAL,
     icon: '/allodium/icons/portal-icon.png',
     label: 'Portal',
+    isExternal: true,
+  },
+    {
+    id: 'mercatus',
+    href: ALLODIUM_TELEGRAM_MERCATOS_BOT,
+    icon: '/allodium/icons/mercatus.png',
+    label: 'Mercatus',
     isExternal: true,
   },
 ];

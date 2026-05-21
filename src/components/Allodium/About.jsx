@@ -48,10 +48,10 @@ const About = () => {
       <div className="h-dvh w-screen" id="clip">
         <div className="mask-clip-path about-image">
           <img className="absolute left-0 top size-full object-cover"
-            src="allodium/allodium.jpg" 
+            src="allodium/img/allodium-bg.jpg" 
             alt="Background"
           />
-        </div>
+        </div> 
       </div>
     </div>
   )

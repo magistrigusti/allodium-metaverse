@@ -1,9 +1,13 @@
 import { ALLODIUM_GITHUB_REPO, ALLODIUM_TELEGRAM_COMMUNITY } from '@/components/Allodium/constants/allodiumLinks';
-import { FaDiscord, FaTwitter, FaYoutube, FaTwitch, FaGithub, FaTelegram } from "react-icons/fa";
+import { FaDiscord, FaTwitter, FaYoutube, FaTwitch, FaGithub, FaTelegram, FaLinkedin } from "react-icons/fa";
 
 // ========== Подвал: сообщество Telegram + репозиторий на GitHub ==========
 const links = [
   { href: ALLODIUM_TELEGRAM_COMMUNITY, icon: <FaTelegram /> },
+  {
+    href: 'https://www.linkedin.com/in/allodium-fondation/',
+    icon: <FaLinkedin />,
+  },
   // {href: 'https://discord.com', icon: <FaDiscord />},
   // {href: 'https://twitter.com', icon: <FaTwitter/>},
   { href: ALLODIUM_GITHUB_REPO, icon: <FaGithub /> },

@@ -5,7 +5,7 @@ const AllodiumCard = ({src, title, description, color,videoClassName = '',}) => 
       <video className={`absolute left-0 top-0 size-full object-cover object-center ${videoClassName}`}
         src={src}
         loop
-        mutes
+        muted
         autoPlay
       />
       

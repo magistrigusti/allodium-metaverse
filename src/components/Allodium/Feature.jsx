@@ -33,12 +33,13 @@ const Feature = () => {
           />
         </AllodiumTitle>
 
-        <div className="grid h-[135vh] grid-cols-2 grid-rows-3 gap-7">
+        <div className="grid auto-rows-[12rem] grid-cols-2 gap-4 md:h-[135vh] md:grid-rows-3 md:gap-7">
           <AllodiumTitle className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
             <AllodiumCard 
               src="\videos\allodium\dominum\avatar.mp4"
               title={<><b>d om i u m</b></>}
               color="text-blue-700"
+              videoClassName="!object-[center_25%]"
               description="An anime and gaming-inspired NFT collection - 
                 the IP primed for expansion.
               "
@@ -67,6 +68,7 @@ const Feature = () => {
               src="\videos\allodium\alpha\vendor.mp4"
               title={<><b>a l p h a</b></>}
               color="text-blue-300"
+              videoClassName="!object-[center_15%]"
               loop
               muted
               autoPlay

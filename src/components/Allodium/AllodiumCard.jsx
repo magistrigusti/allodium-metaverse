@@ -1,8 +1,8 @@
 
-const AllodiumCard = ({src, title, description, color}) => {
+const AllodiumCard = ({src, title, description, color,videoClassName = '',}) => {
   return (
     <div className="relative size-full">
-      <video className="absolute left-0 top-0 size-full object-cover object-center"
+      <video className={`absolute left-0 top-0 size-full object-cover object-center ${videoClassName}`}
         src={src}
         loop
         mutes

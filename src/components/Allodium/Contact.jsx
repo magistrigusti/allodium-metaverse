@@ -28,19 +28,29 @@ const Contact = () => {
             src="allodium/img/hero-ork.png"
           />
         </div>
-
-        <div className="flex flex-col items-center text-center">
+        <div className="relative z-10 flex flex-col items-center text-center">
           <p className="font-general text-[30px] uppercase">Join Allodium</p>
+
           <p className="special-font mt-10 w-full font-zentry text-5xl leading-[0.9] md:text-[6rem]">
-            <b>Let's bild the</b> <br/> <b>new ere of</b> <br /> <b>gaming together</b>
+            <b>Let's bild the</b> <br /> <b>new ere of</b> <br /> <b>gaming together</b>
           </p>
 
           <Button
             containerClass="mt-10 cursor-pointer"
-            title="contact us"
+              title="contact us"
             onClick={() => window.open(ALLODIUM_TELEGRAM_COMMUNITY, '_blank')}
           />
-        </div>
+</div>
+
+<ImageClipBox
+  clipClass="
+    relative z-20 mx-auto mt-20 -mb-20 w-32
+    md:absolute md:bottom-0 md:right-8 md:mx-0 md:mt-0 md:mb-0
+    md:w-[min(18vw,240px)]
+    lg:right-12 lg:w-[min(20vw,200px)]
+  "
+  src="/allodium/img/FemaleTitanGladiator.png"
+/>
       </div> 
     </div>
   );

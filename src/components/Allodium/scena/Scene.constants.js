@@ -5,14 +5,14 @@ export const ALLODIUM_FLOATING_OASIS_MODEL_PATH =
 
 export const ALLODIUM_FLOATING_OASIS_CAMERA = {
   position: [0, 1.1, 4.2],
-  fov: 36,
+  fov: 46,
 };
 
 export const ALLODIUM_FLOATING_OASIS_MODEL = {
   scale: 1,
-  position: [0, -0.35, 0],
-  rotation: [0.12, -0.35, 0],
-};
+  position: [0, 0.05, 0],
+  rotation: [-0.08, -0.5, 0],
+};  
 
 export const ALLODIUM_FLOATING_OASIS_LIGHT = {
   ambientIntensity: 1.6,

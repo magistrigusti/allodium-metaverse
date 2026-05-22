@@ -50,7 +50,7 @@ const About = () => {
       <div className="h-dvh w-screen" id="clip">
         <div className="mask-clip-path about-image">
           <img className="absolute left-0 top size-full object-cover"
-            src="img/alfa-vender-4.png" 
+            src=".\dominum\Dominum-bg.png" 
             alt="Background"
           />
           

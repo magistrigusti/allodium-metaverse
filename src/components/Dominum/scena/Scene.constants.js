@@ -19,7 +19,7 @@ export const DOMINUM_ISLAND_CAMERA = {
 
 export const DOMINUM_ISLAND_MODEL = {
   scale: 1.72,
-  position: [0, -0.38, 0],
+  position: [0, -0.22, -0.3],
   rotation: [0.15, -0.35, 0],
 };
 

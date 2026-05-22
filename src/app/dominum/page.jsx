@@ -1,5 +1,5 @@
 'use client';
-
+import Feature from '@/components/Dominum/Feature';
 import Dominum from '@/components/Dominum/Dominum';
 import About from '@/components/Dominum/About';
 // import DominumIslandSection from '@/components/Dominum/DominumIslandSection';
@@ -11,6 +11,7 @@ const DominumPage = () => {
       
       {/* <DominumIslandSection /> */}
       <About />
+      <Feature />
     </main>
   );
 };

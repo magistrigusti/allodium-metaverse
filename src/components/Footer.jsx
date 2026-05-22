@@ -1,4 +1,4 @@
-import { ALLODIUM_GITHUB_REPO, ALLODIUM_TELEGRAM_COMMUNITY } from '@/constants/allodiumLinks';
+import { ALLODIUM_GITHUB_REPO, ALLODIUM_TELEGRAM_COMMUNITY } from '@/components/Allodium/constants/allodiumLinks';
 import { FaDiscord, FaTwitter, FaYoutube, FaTwitch, FaGithub, FaTelegram } from "react-icons/fa";
 
 // ========== Подвал: сообщество Telegram + репозиторий на GitHub ==========

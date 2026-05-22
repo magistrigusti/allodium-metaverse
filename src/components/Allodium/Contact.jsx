@@ -1,4 +1,4 @@
-import { ALLODIUM_TELEGRAM_COMMUNITY } from '@/constants/allodiumLinks';
+import { ALLODIUM_TELEGRAM_COMMUNITY } from '@/components/Allodium/constants/allodiumLinks';
 import ImageClipBox from './ImageClipBox';
 import Button from '../Button';
 

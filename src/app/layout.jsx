@@ -1,4 +1,4 @@
-import { ALLODIUM_PROJECT_SITE } from '@/constants/allodiumLinks';
+import { ALLODIUM_PROJECT_SITE } from '@/components/Allodium/constants/allodiumLinks';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';

@@ -15,7 +15,7 @@ import {
   NAVBAR_ICON_LINKS,
   NAVBAR_PRODUCTS_LINK,
   NAVBAR_SOUNDTRACK,
-} from '@/constants/navbar.constants';
+} from '@/components/Allodium/constants/navbar.constants';
 
 const getActiveClass = (isActive) => {
   return isActive ? NAVBAR_CLASSES.iconActive : '';
@@ -202,12 +202,11 @@ const Navbar = () => {
             />
 
             <Button
-              id="product-button-mobile"
-              containerClass={NAVBAR_CLASSES.productsMobile}
-              title={NAVBAR_PRODUCTS_LINK.label}
-              rightIcon={<TiLocationArrowOutline />}
-              onClick={() => window.open(NAVBAR_PRODUCTS_LINK.href, '_blank')}
-            />
+  id="product-button-mobile"
+  containerClass={NAVBAR_CLASSES.productsMobile}
+  title={NAVBAR_PRODUCTS_LINK.label}
+  onClick={() => window.open(NAVBAR_PRODUCTS_LINK.href, '_blank')}
+/>
           </div>
 
           <div className={NAVBAR_CLASSES.rightGroup}>

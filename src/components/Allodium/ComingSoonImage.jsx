@@ -37,7 +37,7 @@ const ComingSoonImage = () => {
     <img
   ref={frameRef}
   className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-300 ease-out"
-  src="public\dominum\republic.png"
+  src="./dominum/republic.png"
   alt="entrance"
   style={{ transform: transformStyle }}
   onMouseMove={handleMouseMove}

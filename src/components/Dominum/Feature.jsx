@@ -5,7 +5,7 @@ import ComingSoonImage from './ComingSoonImage';
 
 const Feature = () => {
   return (
-    <section className="bg-black pb-52">
+    <section className="bg-black pb-8 md:pb-52">
       <div className="container mx-auto px-3 md:px-10">
         <div className="px-5 py-32">
           <p className="font-circular-web text-lg text-blue-50">
@@ -28,31 +28,32 @@ const Feature = () => {
         </DominumTitle>
 
         <div className="grid auto-rows-[12rem] grid-cols-2 gap-4 md:h-[135vh] md:grid-rows-3 md:gap-7">
-          <DominumTitle className="bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2">
+          <DominumTitle className="bento-tilt_1 row-span-2 md:col-span-1 md:row-span-2">
             <DominumCard 
               src="./dominum/citizenship.png"
-              title={<><b>c i t i z e n s h i p</b></>}
+              // title={<><b>c i t i z e n s h i p</b></>}
               color="text-blue-700"
-              videoClassName="!object-[center_15%]"
+              videoClassName="!object-[center_35%]"
               description=""
             />
           </DominumTitle>
 
-          <DominumTitle className="bento-tilt_1 row-span-1 ms-32 md:col-span-1 md:ms-0">
+          <DominumTitle className="bento-tilt_1 row-span-1 ms-0 md:col-span-1 md:ms-0">
             <DominumCard 
               src="./dominum/roadmap.png"
               title={<><b>r o a d m a p</b></>}     
               color="text-violet-900"
+              // videoClassName="!object-contain"
               description=""             
             />
           </DominumTitle>
 
-          <DominumTitle className="bento-tilt_1 me-14 md:col-span-1 md:me-0">
+          <DominumTitle className="bento-tilt_1 row-span-2 md:col-span-1 md:me-0">
             <DominumCard
               src="./dominum/treasury.png"
-              title={<><b>T R E A S U R Y</b></>}
+              // title={<><b>T R E A S U R Y</b></>}
               color="text-blue-300"
-              videoClassName="!object-[center_15%]"
+              videoClassName="!left-1/2 !h-[135%] !w-auto !max-w-none !-translate-x-1/2 !object-contain !object-top"
               
             />
           </DominumTitle>

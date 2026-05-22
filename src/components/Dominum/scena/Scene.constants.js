@@ -30,7 +30,7 @@ export const DOMINUM_ISLAND_MOBILE_VIEW = {
     fov: 36,
   },
   model: {
-    scale: 1.72,
+    scale: 1.5,
     position: [0, -0.22, -0.3],
     rotation: [0.15, -0.35, 0],
   },

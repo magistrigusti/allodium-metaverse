@@ -64,13 +64,13 @@ const DominumIslandScene = ({ isControlsEnabled }) => {
           position={DOMINUM_ISLAND_LIGHT.directionalPosition}
           intensity={DOMINUM_ISLAND_LIGHT.directionalIntensity}
         />
-
-        <Suspense fallback={null}>
-          <Environment
+        <Environment
             background
             files={DOMINUM_SKY_CUBEMAP_FILES}
             path={DOMINUM_SKY_CUBEMAP_PATH}
           />
+        <Suspense fallback={null}>
+          
 
           <DominumIslandModel model={view.model} />
         </Suspense>

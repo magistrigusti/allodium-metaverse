@@ -13,9 +13,7 @@ const Feature = () => {
           </p>
 
           <p className="max-w-md font-circular-web text-lg text-blue-50 opacity-50">
-            Immerse yourself in a rich and ever-expanding universe where a vibrant
-            array of products converge into an interconnected overplay experience 
-            on yor world
+            Dominum is your gateway to the Allodium world — a living island where heroes rise, resources flow, and a new digital civilization begins.
           </p>
         </div>
 
@@ -24,7 +22,7 @@ const Feature = () => {
           <DominumCard src="./dominum/Dominum-island.png"
             title={<><b>I S L A N D</b></>}
             color="text-orange-300"
-            description="" 
+            description="Build your island. Gather resources. Awaken heroes. Expand your dominion across the living world of Allodium." 
            
           />
         </DominumTitle>
@@ -35,7 +33,7 @@ const Feature = () => {
               src="./dominum/citizenship.png"
               title={<><b>c i t i z e n s h i p</b></>}
               color="text-blue-700"
-              videoClassName="!object-[center_25%]"
+              videoClassName="!object-[center_15%]"
               description=""
             />
           </DominumTitle>

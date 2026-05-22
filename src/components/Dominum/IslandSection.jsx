@@ -27,7 +27,7 @@ const DominumIslandSection = () => {
     return (
         <section
             id="dominum-island-scene"
-            className="relative h-dvh w-screen overflow-hidden bg-black"
+            className="relative h-[68dvh] w-screen overflow-hidden bg-black md:h-dvh"
         >
             <DominumIslandScene 
                 isControlsEnabled={isIslandControlsEnabled}

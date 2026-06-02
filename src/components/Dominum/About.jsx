@@ -5,7 +5,7 @@ import AnimatedTitle from './AnimatedTitle';
 import DominumIslandSection from '@/components/Dominum/IslandSection';
 
 gsap.registerPlugin(ScrollTrigger);
-
+ 
 const About = () => {
   useGSAP(() => {
     const clipAnimation = gsap.timeline({
